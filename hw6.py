@@ -346,6 +346,29 @@ def CN(w0, z, m, w, x0, T, N):
 RK4: fourth order Runge-Kutta
 """
 def RK4(w0, z, m, w, x0, T, N):
+	tn = 0
+	def b(tn):
+		b = np.array([[0],[math.cos(w*tn)/m]])
+		return b
+
+	A = np.array([[0,1],[-(w0)**2, -2*z*w0]])
+	dt = T/N
+	xn = np.zeros((2, N+1))
+	xn[:,0,None] = x0
+	t = [[dt*n for n in range(N+1)]]
+	t = np.array(t)
+
+	for n in range(N):
+		tn = t[0][n]
+		k1 = dt*(np.matmul(A, xn[:,n,None]) + b(tn))
+		k2 = dt*(np.matmul(A, 0.5*k1+xn[:,n,None]) + b(tn + 0.5*dt))
+		k3 = dt*(np.matmul(A, 0.5*k2+xn[:,n,None]) + b(tn + 0.5*dt))
+		k4 = dt*(np.matmul(A, k3+xn[:,n,None]) + b(tn+dt))
+
+		xn[:,n+1,None] = xn[:,n,None] + 1/6*k1 + 1/3*k2 + 1/3*k3 + 1/6*k4
+
+	x = np.array([xn[0]])
+
 	return (x,t)
 
 """
@@ -358,6 +381,6 @@ if __name__ == '__main__':
 	# print(time)
 
 	temp = np.array([[0],[0]])
-	disp, time = CN(1, 1, 1, 1, temp, 10, 10000)
+	disp, time = RK4(1, 1, 1, 1, temp, 10, 10000)
 	print(disp)
 	print(time)

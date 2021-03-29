@@ -380,7 +380,93 @@ if __name__ == '__main__':
 	# print(disp)
 	# print(time)
 
-	temp = np.array([[0],[0]])
-	disp, time = RK4(1, 1, 1, 1, temp, 10, 10000)
-	print(disp)
-	print(time)
+	x0 = np.array([[0],[0]])
+	# disp, time = RK4(1, 1, 1, 1, x0, 10, 10)
+	# print(disp[0][10])
+
+	solution = 0.5*(math.sin(10) - 10*math.exp(-10))
+
+	N = [10**p for p in range(2,7)]
+	errorFE = np.zeros((1, 5))
+	errorBE = np.zeros((1, 5))
+	errorCN = np.zeros((1, 5))
+	errorRK4 = np.zeros((1, 5))
+
+	# for i in range(len(N)):
+	# 	n = N[i]
+	# 	x,t = FE(1, 1, 1, 1, x0, 10, n)
+	# 	errorFE[0][i] = abs(x[0][n] - solution)
+
+		# x,t = BE(1, 1, 1, 1, x0, 10, n)
+		# errorBE[0][i] = abs(x[0][n] - solution)
+
+		# x,t = CN(1, 1, 1, 1, x0, 10, n)
+		# errorCN[0][i] = abs(x[0][n] - solution)
+
+		# x,t = RK4(1, 1, 1, 1, x0, 10, n)
+		# errorRK4[0][i] = abs(x[0][n] - solution)
+
+	# print(errorFE)
+	# print(errorBE)
+	# print(errorCN)
+	# print(errorRK4)
+
+	errorFE = [[7.88946562e-03, 7.50915688e-04, 7.47227998e-05, 7.46860367e-06, 7.46823616e-07]]
+	errorBE = [[7.07240584e-03, 7.42748873e-04, 7.46411320e-05, 7.46778710e-06, 7.46816556e-07]]
+	errorCN = [[5.77957025e-04, 5.77822211e-06, 5.77820765e-08, 5.77776715e-10, 6.07214279e-12]]
+	errorRK4 = [[1.06083735e-06, 1.01245956e-10, 9.99200722e-15, 1.22124533e-15, 2.52020627e-14]]
+
+	eFE = [i for i in range(5)]
+	eBE = [i for i in range(5)]
+	eCN = [i for i in range(5)]
+	eRK4 = [i for i in range(5)]
+
+	for k in range(5):
+		eFE[k] = errorFE[0][k]
+		eBE[k] = errorBE[0][k]
+		eCN[k] = errorCN[0][k]
+		eRK4[k] = errorRK4[0][k]
+
+	plt.figure()
+	fig, ax = plt.subplots()
+	ax.plot(N, eFE, label = "Error vs. N")
+	ax.set_xscale("log")
+	ax.set_yscale("log")
+	plt.title("Forward Euler: Error vs. N")
+	plt.xlabel("N (subintervals)")
+	plt.ylabel("Error")
+	plt.savefig("FE.png", bbox_inches = "tight")
+	plt.close("all")
+
+	plt.figure()
+	fig, ax = plt.subplots()
+	ax.plot(N, eBE, label = "Error vs. N")
+	ax.set_xscale("log")
+	ax.set_yscale("log")
+	plt.title("Backward Euler: Error vs. N")
+	plt.xlabel("N (subintervals)")
+	plt.ylabel("Error")
+	plt.savefig("BE.png", bbox_inches = "tight")
+	plt.close("all")
+
+	plt.figure()
+	fig, ax = plt.subplots()
+	ax.plot(N, eCN, label = "Error vs. N")
+	ax.set_xscale("log")
+	ax.set_yscale("log")
+	plt.title("Crank-Nicolson: Error vs. N")
+	plt.xlabel("N (subintervals)")
+	plt.ylabel("Error")
+	plt.savefig("CN.png", bbox_inches = "tight")
+	plt.close("all")
+
+	plt.figure()
+	fig, ax = plt.subplots()
+	ax.plot(N, eRK4, label = "Error vs. N")
+	ax.set_xscale("log")
+	ax.set_yscale("log")
+	plt.title("Runge-Kutta 4: Error vs. N")
+	plt.xlabel("N (subintervals)")
+	plt.ylabel("Error")
+	plt.savefig("RK4.png", bbox_inches = "tight")
+	plt.close("all")

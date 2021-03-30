@@ -392,6 +392,8 @@ if __name__ == '__main__':
 	errorCN = np.zeros((1, 5))
 	errorRK4 = np.zeros((1, 5))
 
+	# Error
+
 	# for i in range(len(N)):
 	# 	n = N[i]
 	# 	x,t = FE(1, 1, 1, 1, x0, 10, n)
@@ -411,62 +413,135 @@ if __name__ == '__main__':
 	# print(errorCN)
 	# print(errorRK4)
 
-	errorFE = [[7.88946562e-03, 7.50915688e-04, 7.47227998e-05, 7.46860367e-06, 7.46823616e-07]]
-	errorBE = [[7.07240584e-03, 7.42748873e-04, 7.46411320e-05, 7.46778710e-06, 7.46816556e-07]]
-	errorCN = [[5.77957025e-04, 5.77822211e-06, 5.77820765e-08, 5.77776715e-10, 6.07214279e-12]]
-	errorRK4 = [[1.06083735e-06, 1.01245956e-10, 9.99200722e-15, 1.22124533e-15, 2.52020627e-14]]
+	# Part 3: Plotting
 
-	eFE = [i for i in range(5)]
-	eBE = [i for i in range(5)]
-	eCN = [i for i in range(5)]
-	eRK4 = [i for i in range(5)]
+	# errorFE = [[7.88946562e-03, 7.50915688e-04, 7.47227998e-05, 7.46860367e-06, 7.46823616e-07]]
+	# errorBE = [[7.07240584e-03, 7.42748873e-04, 7.46411320e-05, 7.46778710e-06, 7.46816556e-07]]
+	# errorCN = [[5.77957025e-04, 5.77822211e-06, 5.77820765e-08, 5.77776715e-10, 6.07214279e-12]]
+	# errorRK4 = [[1.06083735e-06, 1.01245956e-10, 9.99200722e-15, 1.22124533e-15, 2.52020627e-14]]
 
-	for k in range(5):
-		eFE[k] = errorFE[0][k]
-		eBE[k] = errorBE[0][k]
-		eCN[k] = errorCN[0][k]
-		eRK4[k] = errorRK4[0][k]
+	# eFE = [i for i in range(5)]
+	# eBE = [i for i in range(5)]
+	# eCN = [i for i in range(5)]
+	# eRK4 = [i for i in range(5)]
+
+	# for k in range(5):
+	# 	eFE[k] = errorFE[0][k]
+	# 	eBE[k] = errorBE[0][k]
+	# 	eCN[k] = errorCN[0][k]
+	# 	eRK4[k] = errorRK4[0][k]
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(N, eFE, label = "Error vs. N")
+	# ax.set_xscale("log")
+	# ax.set_yscale("log")
+	# plt.title("Forward Euler: Error vs. N")
+	# plt.xlabel("N (subintervals)")
+	# plt.ylabel("Error")
+	# plt.savefig("FE.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(N, eBE, label = "Error vs. N")
+	# ax.set_xscale("log")
+	# ax.set_yscale("log")
+	# plt.title("Backward Euler: Error vs. N")
+	# plt.xlabel("N (subintervals)")
+	# plt.ylabel("Error")
+	# plt.savefig("BE.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(N, eCN, label = "Error vs. N")
+	# ax.set_xscale("log")
+	# ax.set_yscale("log")
+	# plt.title("Crank-Nicolson: Error vs. N")
+	# plt.xlabel("N (subintervals)")
+	# plt.ylabel("Error")
+	# plt.savefig("CN.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(N, eRK4, label = "Error vs. N")
+	# ax.set_xscale("log")
+	# ax.set_yscale("log")
+	# plt.title("Runge-Kutta 4: Error vs. N")
+	# plt.xlabel("N (subintervals)")
+	# plt.ylabel("Error")
+	# plt.savefig("RK4.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# Part 4
+
+	# x1, t = RK4(1, 0, 1, 0.8, x0, 100, 10000)
+	# x2, t = RK4(1, 0, 1, 0.9, x0, 100, 10000)
+	# x3, t = RK4(1, 0, 1, 1.0, x0, 100, 10000)
+
+	# x1new = [0.0 for i in range(10000)]
+	# x2new = [0.0 for i in range(10000)]
+	# x3new = [0.0 for i in range(10000)]
+	# tnew = [0.0 for i in range(10000)]
+
+	# for n in range(10000):
+	# 	x1new[n] = x1[0][n]
+	# 	x2new[n] = x2[0][n]
+	# 	x3new[n] = x3[0][n]
+	# 	tnew[n] = t[0][n]
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(tnew, x1new, label = "x1 vs t")
+	# plt.title("w = 0.8")
+	# plt.xlabel("time")
+	# plt.ylabel("x(t)")
+	# plt.savefig("w1.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(tnew, x2new, label = "x1 vs t")
+	# plt.title("w = 0.9")
+	# plt.xlabel("time")
+	# plt.ylabel("x(t)")
+	# plt.savefig("w2.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# plt.figure()
+	# fig, ax = plt.subplots()
+	# ax.plot(tnew, x3new, label = "x1 vs t")
+	# plt.title("w = 1.0")
+	# plt.xlabel("time")
+	# plt.ylabel("x(t)")
+	# plt.savefig("w3.png", bbox_inches = "tight")
+	# plt.close("all")
+
+	# Part 5
+
+	wlist = [(0.1*p) for p in range(1,101)]
+	maxlist = [0.0*p for p in range(1,101)]
+	xnew = [0.0 for p in range(10000)]
+	
+	for i in range(1, 101):
+		w = wlist[i-1]
+		x, t = RK4(1, 0.1, 1, w, x0, 100, 10000)
+
+		for n in range(10000):
+			xnew[n] = x[0][n]
+
+		maxx = abs(max(xnew))
+		maxlist[i-1] = maxx
 
 	plt.figure()
 	fig, ax = plt.subplots()
-	ax.plot(N, eFE, label = "Error vs. N")
+	ax.plot(wlist, maxlist, label = "max vs w")
 	ax.set_xscale("log")
 	ax.set_yscale("log")
-	plt.title("Forward Euler: Error vs. N")
-	plt.xlabel("N (subintervals)")
-	plt.ylabel("Error")
-	plt.savefig("FE.png", bbox_inches = "tight")
-	plt.close("all")
-
-	plt.figure()
-	fig, ax = plt.subplots()
-	ax.plot(N, eBE, label = "Error vs. N")
-	ax.set_xscale("log")
-	ax.set_yscale("log")
-	plt.title("Backward Euler: Error vs. N")
-	plt.xlabel("N (subintervals)")
-	plt.ylabel("Error")
-	plt.savefig("BE.png", bbox_inches = "tight")
-	plt.close("all")
-
-	plt.figure()
-	fig, ax = plt.subplots()
-	ax.plot(N, eCN, label = "Error vs. N")
-	ax.set_xscale("log")
-	ax.set_yscale("log")
-	plt.title("Crank-Nicolson: Error vs. N")
-	plt.xlabel("N (subintervals)")
-	plt.ylabel("Error")
-	plt.savefig("CN.png", bbox_inches = "tight")
-	plt.close("all")
-
-	plt.figure()
-	fig, ax = plt.subplots()
-	ax.plot(N, eRK4, label = "Error vs. N")
-	ax.set_xscale("log")
-	ax.set_yscale("log")
-	plt.title("Runge-Kutta 4: Error vs. N")
-	plt.xlabel("N (subintervals)")
-	plt.ylabel("Error")
-	plt.savefig("RK4.png", bbox_inches = "tight")
+	plt.title("Max Displacement vs. Forcing Frequency")
+	plt.xlabel("Frequency (w)")
+	plt.ylabel("Max Displacement")
+	plt.savefig("frf.png", bbox_inches = "tight")
 	plt.close("all")
